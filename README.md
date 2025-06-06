@@ -31,7 +31,7 @@ Incluye un **banner personalizado estilo "developer"**, en formato de código, o
 
 - Email: gattogiani1998@gmail.com  
 - GitHub: [GattoG13](https://github.com/GattoG13)  
-- LinkedIn: [linkedin.com/in/gianfrancogatto](https://linkedin.com/in/gianfrancogatto)
+- LinkedIn: [linkedin.com/in/gian-gatto](https://linkedin.com/in/gian-gatto)
 
 ---
 
