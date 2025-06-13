@@ -1,24 +1,20 @@
-import { motion } from 'framer-motion';
+import DynamicWords from './DynamicWords';
+import { motion } from "framer-motion";
+import Animation from './LottieAnimation'
 
 export default function Home() {
   return (
-    <main className="flex-1 flex flex-col justify-center items-center min-h-screen">
-      <motion.h1
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="text-4xl font-bold text-center"
-      >
-        My Portfolio
-      </motion.h1>
+    <section className="pt-10 flex flex-col items-center justify-center text-center min-h-screen">
+      <Animation />
+      <DynamicWords />
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 1 }}
         className="mt-4 text-lg text-gray-400"
       >
-        Jr Full Stack Developer | Software Engineer
+        Jr Full Stack Developer | Software Developer
       </motion.p>
-    </main>
+    </section>
   );
 }

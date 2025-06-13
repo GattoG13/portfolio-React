@@ -1,19 +1,47 @@
 import React, { useState } from 'react';
+import ProjectModal from './ProjectModal';
+
 
 const projectData = [
-  { id: 1, title: "Project 1" },
+  {
+    id: 1,
+    title: "Stephen King FanPage",
+    description: `
+📘 Stephen King FanPage
+
+Sitio web estático creado como práctica de maquetado. Simula una tienda visual de libros del autor, con diseño responsive y navegación básica.
+
+✨ Características:
+• 🖼️ Galería visual de libros destacados
+• 🧩 HTML semántico con estructura clara
+• 🎨 Estilos custom con CSS y Bootstrap 4
+• 🧭 Navegación tipo e-commerce simulada
+
+🛠️ Tecnologías utilizadas:
+HTML5 · CSS3 · Bootstrap 4 · jQuery
+`,
+    video: "/imgs/project1/vid1.mp4",
+    images: [
+      "/imgs/project1/img1.jpg",
+      "/imgs/project1/img2.jpg",
+      "/imgs/project1/img3.jpg",
+      "/imgs/project1/img4.jpg"
+    ],
+    thumbnail: "/imgs/project1/img1.jpg",
+    preview: "Galería interactiva y diseño responsive.",
+    github: "https://github.com/GattoG13/Stephen-King-FanPage"
+  },
   { id: 2, title: "Project 2" },
   { id: 3, title: "Project 3" },
   { id: 4, title: "Project 4" },
   { id: 5, title: "Project 5" },
-  { id: 6, title: "Project 6" },
+  { id: 6, title: "Project 6" }
 ];
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
 
   const handleClick = (project) => {
-    alert(`Clicked on ${project.title}`);
     setSelectedProject(project);
   };
 
@@ -25,27 +53,35 @@ export default function Projects() {
           <div
             key={project.id}
             onClick={() => handleClick(project)}
-            className="bg-gray-800 text-white p-4 rounded-lg transform transition-transform duration-300 cursor-pointer hover:scale-105 hover:bg-gray-700"
-          >
-            {project.title}
+className="group relative w-full h-40 bg-gray-800 text-white rounded-xl overflow-hidden cursor-pointer
+             transition duration-300 hover:scale-[1.04] hover:shadow-[0_0_15px_rgba(255,255,255,0.3)]"
+>
+            {/* Imagen de fondo */}
+            <img
+              src={project.thumbnail}
+              alt={project.title}
+               className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 transition duration-300"
+            />
+
+            {/* Overlay oscuro */}
+            <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-10 transition duration-300"></div>
+
+            {/* Texto */}
+            <div className="relative z-10 flex flex-col justify-end h-full p-4">
+              <h3 className="text-lg text-white group-hover:text-gray-900 transition">{project.title}</h3>
+              <p  className="text-sm text-white group-hover:text-gray-800 transition">{project.preview || "Preview del proyecto..."}</p>
+            </div>
           </div>
         ))}
       </div>
 
       {selectedProject && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
-          <div className="bg-white p-6 rounded-lg text-black">
-            <h3 className="text-xl mb-2">{selectedProject.title}</h3>
-            <p>Description of {selectedProject.title} goes here.</p>
-            <button 
-              onClick={() => setSelectedProject(null)} 
-              className="mt-4 px-4 py-2 bg-gray-800 text-white rounded"
-            >
-              Close
-            </button>
-          </div>
-        </div>
+        <ProjectModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+        />
       )}
+
     </div>
   );
 }
